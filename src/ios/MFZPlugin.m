@@ -855,19 +855,40 @@ indirectly invokes plugin 'logins' with the auth token set.
 
 #pragma mark - MyFiziqAvatarManager Properties
 
+-(NSDictionary*)convertMyFiziqAvatarToArray:(MyFiziqAvatar*) avatarObj {
+    
+    NSMutableDictionary *_result = [[NSMutableDictionary alloc] init];
+    
+    [_result setValue:[NSString stringWithFormat:@"%@", avatarObj.attemptId] forKey:@"attemptId"];
+    [_result setValue:[NSString stringWithFormat:@"%@", avatarObj.meshCachedFile] forKey:@"meshCachedFile"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.heightInCm] forKey:@"heightInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.weightInKg] forKey:@"weightInKg"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.thighInCm] forKey:@"thighInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.waistInCm] forKey:@"waistInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.chestInCm] forKey:@"chestInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.hipInCm] forKey:@"hipInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.inseamInCm] forKey:@"inseamInCm"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", avatarObj.fitness] forKey:@"fitness"];
+    [_result setValue:[NSString stringWithFormat:@"%.20lf", [avatarObj.date timeIntervalSince1970]] forKey:@"date"];
+    [_result setValue:[NSString stringWithFormat:@"%d", avatarObj.hasDownloadedMesh] forKey:@"hasDownloadedMesh"];
+    return _result;
+}
+
 - (void)mfzAvatarMgrAllAvatars:(CDVInvokedUrlCommand *)command {
     __block CDVPluginResult *pluginResult = nil;
     @try {
         MyFiziqSDK *mfz = [MyFiziqSDK shared];
         // Construct the return array
-        NSMutableArray<NSString *> *arr = [[NSMutableArray<NSString *> alloc] initWithCapacity:mfz.avatars.all.count];
+//        NSMutableArray<NSString *> *arr = [[NSMutableArray<NSString *> alloc] initWithCapacity:mfz.avatars.all.count];
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
         for (MyFiziqAvatar *a in mfz.avatars.all) {
-            [arr addObject:(NSString *)a.attemptId];
+            NSDictionary *obj = [self convertMyFiziqAvatarToArray:a];
+            [arr addObject:obj];
         }
         
-        NSString *arrString = [arr componentsJoinedByString:@","];
+//        NSString *arrString = [arr componentsJoinedByString:@","];
         // Return as multipart of all the attempt ids
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:arrString];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:arr];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
