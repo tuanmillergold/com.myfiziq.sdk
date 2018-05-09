@@ -1,5 +1,6 @@
 #import "MFZPlugin.h"
 #import "IdentityProviderHelper.h"
+#import "ViewModel.h"
 
 @interface MFZPlugin()
 @property (nonatomic, strong) NSDictionary *m_config;
@@ -532,12 +533,27 @@ indirectly invokes plugin 'logins' with the auth token set.
 - (void)mfzUserSetHeightInCm:(CDVInvokedUrlCommand *)command {
     __block CDVPluginResult *pluginResult = nil;
     @try {
-        MyFiziqSDK *mfz = [MyFiziqSDK shared];
-        NSNumber *newHeight = [command.arguments objectAtIndex:0];
-        float fltHeight = [newHeight floatValue];
-        mfz.user.heightInCm = fltHeight;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:(double)mfz.user.heightInCm];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        
+        ViewModel *vv = [[ViewModel alloc] init];
+//        [self.viewController presentViewController:vv animated:YES completion:^(void) {
+//            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+//            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+//        }];
+        
+        CDVAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        // Cache rootViewController for back later
+        vv.rootCache = appDelegate.window.rootViewController;
+        
+        appDelegate.window.rootViewController = vv;
+
+        
+//        MyFiziqSDK *mfz = [MyFiziqSDK shared];
+//        NSNumber *newHeight = [command.arguments objectAtIndex:0];
+//        float fltHeight = [newHeight floatValue];
+//        mfz.user.heightInCm = fltHeight;
+//        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:(double)mfz.user.heightInCm];
+//        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -650,6 +666,30 @@ indirectly invokes plugin 'logins' with the auth token set.
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:avatar.meshCachedFile.path];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
+
+- (void)mfzAvatarDisplayNative:(CDVInvokedUrlCommand *)command {
+    __block CDVPluginResult *pluginResult = nil;
+    @try {
+        MyFiziqAvatar *avatar = [self getAvatarForAttemptId:[command.arguments objectAtIndex:0]];
+        if (!avatar) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No corresponding avatar with attempt id found"];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        } else {
+            
+            ViewModel *vv = [[ViewModel alloc] init];
+            [vv setAvatar:avatar];
+            
+            [self.viewController showViewController:vv sender:self];
+            
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:avatar.state];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         }
     } @catch (NSException *exception) {

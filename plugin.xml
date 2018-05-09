@@ -56,6 +56,9 @@
     <source-file src="src/ios/MFZPlugin.m" target-dir="MyFiziqPlugin"/>
     <header-file src="src/ios/IdentityProviderHelper.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/IdentityProviderHelper.m" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/ViewModel.m" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
   </platform>
 
   <!-- <platform name="wp7">
