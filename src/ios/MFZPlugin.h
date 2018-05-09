@@ -51,5 +51,6 @@
 - (void)mfzAvatarMgrRequestAvatars:(CDVInvokedUrlCommand *)command;
 - (void)mfzAvatarMgrDeleteAvatars:(CDVInvokedUrlCommand *)command;
 - (void)mfzAvatarMgrAllAvatars:(CDVInvokedUrlCommand *)command;
+- (void)mfzAvatarDisplayNative:(CDVInvokedUrlCommand *)command;
 
 @end

@@ -153,5 +153,8 @@ module.exports = {
     },
     mfzRegister: function (email, password, success_cb, error_cb) {
         exec(success_cb, error_cb, 'MyFiziq', 'mfzRegister', [email, password]);
+    },
+    mfzAvatarDisplayNative: function (id, success_cb, error_cb) {
+        exec(success_cb, error_cb, 'MyFiziq', 'mfzAvatarDisplayNative', [id]);
     }
 };
