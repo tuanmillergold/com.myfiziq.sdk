@@ -82,7 +82,7 @@
     [self.meshView addGestureRecognizer:self.gestureRotationRecognizer];
     [self.meshView addGestureRecognizer:self.gestureZoomRecognizer];
     
-    self.originalFrame = self.meshView.frame;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -92,6 +92,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [self loadMesh];
+    self.originalFrame = self.meshView.frame;
 }
 
 - (void)clearPresentation {
