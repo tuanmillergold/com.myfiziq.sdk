@@ -49,6 +49,12 @@
       </feature>
     </config-file>
 
+    <config-file target="*-Info.plist" parent="UIAppFonts">
+      <array>
+          <string>raleway-regular-webfont.ttf</string>
+      </array>
+    </config-file>
+
     <hook type="before_build" src="scripts/fixEntitlementsBuildSetting.js"/>
     <hook type="before_run" src="scripts/fixEntitlementsBuildSetting.js"/>
 
@@ -59,6 +65,10 @@
     <source-file src="src/ios/ViewModel.m" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-regular-webfont.ttf" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/fullscreen.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/play.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/refresh.png" target-dir="MyFiziqPlugin"/>
   </platform>
 
   <!-- <platform name="wp7">

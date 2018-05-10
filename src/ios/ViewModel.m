@@ -19,12 +19,26 @@
 #define AMBIENT_COLOR_MTL_LESS_THAN_OR_EQUAL_TO_IOS10   [UIColor colorWithWhite:0.4 alpha:1.0]
 #define SPECULAR_COLOR_MTL_LESS_THAN_OR_EQUAL_TO_IOS10  [UIColor colorWithWhite:0.4 alpha:1.0]
 #define LIGHT_1_COLOR_MTL                               [UIColor colorWithWhite:0.7 alpha:1.0]
-#define LIGHT_2_COLOR_MTL                               [UIColor colorWithWhite:0.9 alpha:1.0]
+#define LIGHT_2_COLOR_MTL                               [UIColor colorWithWhite:1.0 alpha:1.0]
 #define AMBIENT_COLOR_MTL                               [UIColor colorWithWhite:0.0 alpha:1.0]
 #define SPECULAR_COLOR_MTL                              [UIColor colorWithWhite:0.9 alpha:1.0]
 
 @interface ViewModel ()
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *fullscreenButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 @property (weak, nonatomic) IBOutlet SCNView *meshView;
+@property (weak, nonatomic) IBOutlet UILabel *avatarDate;
+@property (weak, nonatomic) IBOutlet UILabel *chestValue;
+@property (weak, nonatomic) IBOutlet UILabel *waistValue;
+@property (weak, nonatomic) IBOutlet UILabel *hipsValue;
+@property (weak, nonatomic) IBOutlet UILabel *thighsValue;
+@property (weak, nonatomic) IBOutlet UILabel *heightValue;
+@property (weak, nonatomic) IBOutlet UILabel *weightValue;
+@property (weak, nonatomic) IBOutlet UIView *controlsView;
+
+
+
 @property (weak, nonatomic) IBOutlet UILabel *measurementDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *measurementHeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *measurementWeightLabel;
@@ -51,6 +65,8 @@
 @property (assign, nonatomic) BOOL meshIsBeingRotated;
 @property (assign, nonatomic) BOOL meshIsBeingZoomed;
 @property (assign, nonatomic) BOOL meshIsBeingMoved;
+@property (assign, nonatomic) SCNAction *rotateObject;
+@property (assign, nonatomic) CGRect originalFrame;
 @end
 
 @implementation ViewModel
@@ -65,6 +81,8 @@
     // OPTIONAL: Add the gesture recognizers for user interaction with the mesh view. This also instantiates the gestures.
     [self.meshView addGestureRecognizer:self.gestureRotationRecognizer];
     [self.meshView addGestureRecognizer:self.gestureZoomRecognizer];
+    
+    self.originalFrame = self.meshView.frame;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -77,7 +95,31 @@
 }
 
 - (void)clearPresentation {
+    
+    self.avatarDate.text = @"-";
+    self.chestValue.text = @"- cm";
+    self.waistValue.text = @"- cm";
+    self.hipsValue.text = @"- cm";
+    self.thighsValue.text = @"- cm";
+    self.heightValue.text = @"- cm";
+    self.weightValue.text = @"- kg";
+    
     [self.meshView setScene:nil];
+}
+
+- (void)loadMeasurements {
+    // NOTE: Check avatar result has been set.
+    if (!self.avatarResult) {
+        return;
+    }
+    // NOTE: Set all labels to the corresponding values of the avatar result.
+    self.avatarDate.text = [self.avatarResult.date aws_stringValue:@"dd MMMM YYYY"];
+    self.heightValue.text = [NSString stringWithFormat:@"%.1f cm", self.avatarResult.heightInCm];
+    self.weightValue.text = [NSString stringWithFormat:@"%.1f kg", self.avatarResult.weightInKg];
+    self.chestValue.text = [NSString stringWithFormat:@"%.1f cm", self.avatarResult.chestInCm];
+    self.waistValue.text = [NSString stringWithFormat:@"%.1f cm", self.avatarResult.waistInCm];
+    self.hipsValue.text = [NSString stringWithFormat:@"%.1f cm", self.avatarResult.hipInCm];
+    self.thighsValue.text = [NSString stringWithFormat:@"%.1f cm", self.avatarResult.thighInCm];
 }
 
 - (UIPanGestureRecognizer *)gestureRotationRecognizer {
@@ -250,7 +292,7 @@
             [alert addAction:okAction];
             [self showViewController:alert sender:self];
         } else {
-            //                [self loadMeasurements];
+                            [self loadMeasurements];
         }
     }];
 }
@@ -337,14 +379,14 @@
         // NOTE: iOS 11+ fixed the lighting issue.
         avatarMaterial.diffuse.contents = AMBIENT_COLOR_MTL;
         avatarMaterial.specular.contents = SPECULAR_COLOR_MTL;
-        lightNode1.position = SCNVector3Make(0.2, 1, 20);
+        lightNode1.position = SCNVector3Make(1, 1, 20);
         lightNode1.light = [SCNLight light];
         lightNode1.light.type = SCNLightTypeOmni;
         lightNode1.light.color = LIGHT_1_COLOR_MTL;
         lightNode1.light.zFar = 500.0f;
         lightNode1.light.zNear = 0.025f;
         [scene.rootNode addChildNode:lightNode1];
-        lightNode2.position = SCNVector3Make(0.2, 3, 1);
+        lightNode2.position = SCNVector3Make(0.2, 0, 2.5);
         lightNode2.light = [SCNLight light];
         lightNode2.light.type = SCNLightTypeOmni;
         lightNode2.light.color = LIGHT_2_COLOR_MTL;
@@ -403,6 +445,36 @@
     }
 }
 
+- (IBAction)playButtonClick:(id)sender {
+    if ([self.meshNode actionForKey:@"rotateAction"]) {
+        [self.meshNode removeActionForKey:@"rotateAction"];
+    } else {
+        self.rotateObject = [SCNAction repeatActionForever:[SCNAction rotateByX:self.meshNode.position.x y:self.meshNode.position.y + 100 z:self.meshNode.position.z duration:200]];
+        [self.meshNode runAction:self.rotateObject forKey:@"rotateAction"];
+    }
+}
+
+- (void)doRotateObject {
+    [self.meshNode runAction:[SCNAction rotateByX:self.meshNode.position.x y:self.meshNode.position.x z:self.meshNode.position.x duration:1000]];
+}
+
+- (IBAction)fullscreenButtonClick:(id)sender {
+    if (self.meshView.frame.size.height != self.originalFrame.size.height) {
+        self.meshView.frame = self.originalFrame;
+        [self.controlsView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0]];
+    } else {
+        [self.controlsView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
+        [self.meshView setFrame:CGRectMake(0, 60, self.view.frame.size.width, (self.view.frame.size.height-60-self.controlsView.frame.size.height))];
+    }
+    [self.controlsView setFrame:CGRectMake(self.controlsView.frame.origin.x, self.meshView.frame.origin.y+self.meshView.frame.size.height, self.controlsView.frame.size.width, self.controlsView.frame.size.height)];
+    [self refreshButtonClick:self];
+    
+}
+
+- (IBAction)refreshButtonClick:(id)sender {
+    [self clearPresentation];
+    [self loadMesh];
+}
 
 /*
 #pragma mark - Navigation
