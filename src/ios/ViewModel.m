@@ -7,6 +7,7 @@
 
 #import "ViewModel.h"
 #import <Cordova/CDV.h>
+#import <sys/utsname.h>
 @import ModelIO;
 @import SceneKit;
 @import SceneKit.ModelIO;
@@ -20,8 +21,8 @@
 #define SPECULAR_COLOR_MTL_LESS_THAN_OR_EQUAL_TO_IOS10  [UIColor colorWithWhite:0.4 alpha:1.0]
 #define LIGHT_1_COLOR_MTL                               [UIColor colorWithWhite:0.7 alpha:1.0]
 #define LIGHT_2_COLOR_MTL                               [UIColor colorWithWhite:1.0 alpha:1.0]
-#define AMBIENT_COLOR_MTL                               [UIColor colorWithWhite:0.0 alpha:1.0]
-#define SPECULAR_COLOR_MTL                              [UIColor colorWithWhite:0.9 alpha:1.0]
+#define AMBIENT_COLOR_MTL                               [UIColor colorWithWhite:0.8 alpha:1.0]
+#define SPECULAR_COLOR_MTL                              [UIColor colorWithWhite:0.5 alpha:1.0]
 
 @interface ViewModel ()
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
@@ -107,6 +108,8 @@
     
     [self.meshView setScene:nil];
 }
+
+
 
 - (void)loadMeasurements {
     // NOTE: Check avatar result has been set.
@@ -377,9 +380,15 @@
         lightNode1.light.zNear = 0.025f;
         [scene.rootNode addChildNode:lightNode1];
     } else if (self.metalDevice) {
+        if([[UIDevice currentDevice] systemVersion].doubleValue < 11.3) {
+            avatarMaterial.diffuse.contents = AMBIENT_COLOR_MTL;
+            avatarMaterial.specular.contents = SPECULAR_COLOR_MTL;
+        } else {
+            avatarMaterial.diffuse.contents = [UIColor colorWithWhite:0.0 alpha:1.0];
+            avatarMaterial.specular.contents = [UIColor colorWithWhite:0.9 alpha:1.0];
+        }
         // NOTE: iOS 11+ fixed the lighting issue.
-        avatarMaterial.diffuse.contents = AMBIENT_COLOR_MTL;
-        avatarMaterial.specular.contents = SPECULAR_COLOR_MTL;
+        
         lightNode1.position = SCNVector3Make(1, 1, 20);
         lightNode1.light = [SCNLight light];
         lightNode1.light.type = SCNLightTypeOmni;
@@ -465,7 +474,7 @@
         [self.controlsView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0]];
     } else {
         [self.controlsView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
-        [self.meshView setFrame:CGRectMake(0, 60, self.view.frame.size.width, (self.view.frame.size.height-60-self.controlsView.frame.size.height))];
+        [self.meshView setFrame:CGRectMake(0, 70, self.view.frame.size.width, (self.view.frame.size.height-70-self.controlsView.frame.size.height))];
     }
     [self.controlsView setFrame:CGRectMake(self.controlsView.frame.origin.x, self.meshView.frame.origin.y+self.meshView.frame.size.height, self.controlsView.frame.size.width, self.controlsView.frame.size.height)];
     [self refreshButtonClick:self];
