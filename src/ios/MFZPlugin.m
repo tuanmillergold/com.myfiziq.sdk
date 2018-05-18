@@ -533,27 +533,12 @@ indirectly invokes plugin 'logins' with the auth token set.
 - (void)mfzUserSetHeightInCm:(CDVInvokedUrlCommand *)command {
     __block CDVPluginResult *pluginResult = nil;
     @try {
-        
-        ViewModel *vv = [[ViewModel alloc] init];
-//        [self.viewController presentViewController:vv animated:YES completion:^(void) {
-//            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-//            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-//        }];
-        
-        CDVAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-        
-        // Cache rootViewController for back later
-        vv.rootCache = appDelegate.window.rootViewController;
-        
-        appDelegate.window.rootViewController = vv;
-
-        
-//        MyFiziqSDK *mfz = [MyFiziqSDK shared];
-//        NSNumber *newHeight = [command.arguments objectAtIndex:0];
-//        float fltHeight = [newHeight floatValue];
-//        mfz.user.heightInCm = fltHeight;
-//        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:(double)mfz.user.heightInCm];
-//        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        MyFiziqSDK *mfz = [MyFiziqSDK shared];
+        NSNumber *newHeight = [command.arguments objectAtIndex:0];
+        float fltHeight = [newHeight floatValue];
+        mfz.user.heightInCm = fltHeight;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:(double)mfz.user.heightInCm];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
