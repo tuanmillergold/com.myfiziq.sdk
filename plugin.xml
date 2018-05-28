@@ -41,7 +41,7 @@
       <source url="https://github.com/CocoaPods/Specs.git"/>
     </pods-config>
     <!-- use the latest version of a pod -->
-    <pod branch="18.1.0" git="https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/myfiziq-sdk-ios" name="MyFiziqSDK" />
+    <pod branch="18.2.1" git="https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/myfiziq-sdk-ios" name="MyFiziqSDK" />
     
     <config-file target="config.xml" parent="/widget">
       <feature name="MyFiziq">
@@ -67,8 +67,15 @@
     <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/raleway-regular-webfont.ttf" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/fullscreen@2x.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/fullscreen@3x.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/play.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/play@2x.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/play@3x.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/refresh.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/refresh@2x.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/refresh@3x.png" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/arrows-back.png" target-dir="MyFiziqPlugin"/>
   </platform>
 
   <!-- <platform name="wp7">
