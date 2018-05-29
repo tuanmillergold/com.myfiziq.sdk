@@ -51,7 +51,9 @@
 
     <config-file target="*-Info.plist" parent="UIAppFonts">
       <array>
-          <string>raleway-regular-webfont.ttf</string>
+          <string>raleway-regular-webfont.woff</string>
+          <string>raleway-bold-webfont.woff</string>
+          <string>raleway-extrabold-webfont.woff</string>
       </array>
     </config-file>
 
@@ -65,7 +67,9 @@
     <source-file src="src/ios/ViewModel.m" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-regular-webfont.ttf" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-regular-webfont.woff" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-bold-webfont.woff" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-extrabold-webfont.woff" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen@2x.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen@3x.png" target-dir="MyFiziqPlugin"/>

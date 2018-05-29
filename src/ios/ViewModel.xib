@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -70,7 +69,7 @@
                     <rect key="frame" x="0.0" y="493" width="375" height="181"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-RK-JS4" userLabel="Avatar date">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-RK-JS4" userLabel="Avatar date">
                             <rect key="frame" x="21" y="10" width="330" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
@@ -81,7 +80,7 @@
                             <rect key="frame" x="21" y="78" width="66" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254901960782" green="0.62745098039215685" blue="0.62352941176470589" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW9-8R-wiZ" userLabel="chestValue">
@@ -95,7 +94,7 @@
                             <rect key="frame" x="148" y="80" width="68" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254899999995" green="0.62745098040000002" blue="0.62352941179999999" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvQ-zR-Whn" userLabel="waistValue">
@@ -109,7 +108,7 @@
                             <rect key="frame" x="267" y="78" width="71" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254899999995" green="0.62745098040000002" blue="0.62352941179999999" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQs-Ku-g6N" userLabel="hipsValue">
@@ -130,7 +129,7 @@
                             <rect key="frame" x="148" y="141" width="68" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254899999995" green="0.62745098040000002" blue="0.62352941179999999" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKt-06-Ari" userLabel="heightValue">
@@ -151,14 +150,14 @@
                             <rect key="frame" x="267" y="141" width="71" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254899999995" green="0.62745098040000002" blue="0.62352941179999999" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THIGHS" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-9V-Pis" userLabel="thighsLabel">
                             <rect key="frame" x="21" y="141" width="66" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                            <color key="textColor" red="0.63137254899999995" green="0.62745098040000002" blue="0.62352941179999999" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.29803921568627451" green="0.29411764705882354" blue="0.28235294117647058" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1h-VD-Uyc">
