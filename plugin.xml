@@ -49,37 +49,49 @@
       </feature>
     </config-file>
 
-    <config-file target="*-Info.plist" parent="UIAppFonts">
-      <array>
-          <string>raleway-regular-webfont.woff</string>
-          <string>raleway-bold-webfont.woff</string>
-          <string>raleway-extrabold-webfont.woff</string>
-      </array>
-    </config-file>
-
     <hook type="before_build" src="scripts/fixEntitlementsBuildSetting.js"/>
     <hook type="before_run" src="scripts/fixEntitlementsBuildSetting.js"/>
 
+    <config-file target="*-Info.plist" parent="UIAppFonts">
+      <array>
+          <string>raleway-regular-webfont.ttf</string>
+          <string>raleway-extralight-webfont.ttf</string>
+          <string>raleway-bold-webfont.ttf</string>
+          <string>raleway-extrabold-webfont.ttf</string>
+      </array>
+    </config-file>
+
+    
     <header-file src="src/ios/MFZPlugin.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/MFZPlugin.m" target-dir="MyFiziqPlugin"/>
+
     <header-file src="src/ios/IdentityProviderHelper.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/IdentityProviderHelper.m" target-dir="MyFiziqPlugin"/>
+
     <source-file src="src/ios/ViewModel.m" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
+    <header-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-regular-webfont.ttf" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-bold-webfont.ttf" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-extrabold-webfont.ttf" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/fullscreen.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/fullscreen@2x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/fullscreen@3x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/play.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/play@2x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/play@3x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/refresh.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/refresh@2x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/refresh@3x.png" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/arrows-back.png" target-dir="MyFiziqPlugin"/>
+
+    <resource-file src="src/ios/raleway-extralight-webfont.ttf" target="raleway-extralight-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-light-webfont.ttf" target="raleway-light-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-thin-webfont.ttf" target="raleway-thin-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-regular-webfont.ttf" target="raleway-regular-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-medium-webfont.ttf" target="raleway-medium-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-heavy-webfont.ttf" target="raleway-heavy-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-semibold-webfont.ttf" target="raleway-semibold-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-bold-webfont.ttf" target="raleway-bold-webfont.ttf"/>
+    <resource-file src="src/ios/raleway-extrabold-webfont.ttf" target="raleway-extrabold-webfont.ttf"/>
+    <resource-file src="src/ios/fullscreen.png" target="fullscreen.png"/>
+    <resource-file src="src/ios/fullscreen@2x.png" target="fullscreen@2x.png"/>
+    <resource-file src="src/ios/fullscreen@3x.png" target="fullscreen@3x.png"/>
+    <resource-file src="src/ios/play.png" target="play.png"/>
+    <resource-file src="src/ios/play@2x.png" target="play@2x.png"/>
+    <resource-file src="src/ios/play@3x.png" target="play@3x.png"/>
+    <resource-file src="src/ios/refresh.png" target="refresh.png"/>
+    <resource-file src="src/ios/refresh@2x.png" target="refresh@2x.png"/>
+    <resource-file src="src/ios/refresh@3x.png" target="refresh@3x.png"/>
+    <resource-file src="src/ios/arrows-back.png" target="arrows-back.png"/>
+
   </platform>
 
   <!-- <platform name="wp7">
