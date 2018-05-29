@@ -67,9 +67,9 @@
     <source-file src="src/ios/ViewModel.m" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.h" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/ViewModel.xib" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-regular-webfont.woff" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-bold-webfont.woff" target-dir="MyFiziqPlugin"/>
-    <source-file src="src/ios/raleway-extrabold-webfont.woff" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-regular-webfont.ttf" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-bold-webfont.ttf" target-dir="MyFiziqPlugin"/>
+    <source-file src="src/ios/raleway-extrabold-webfont.ttf" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen@2x.png" target-dir="MyFiziqPlugin"/>
     <source-file src="src/ios/fullscreen@3x.png" target-dir="MyFiziqPlugin"/>
